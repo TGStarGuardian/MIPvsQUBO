@@ -1,0 +1,5 @@
+numpy
+scipy
+dimod
+dwave-neal
+dwave-system

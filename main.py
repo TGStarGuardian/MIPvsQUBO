@@ -88,20 +88,16 @@ def main():
     # Problem configs: (assets, obligations, use_MTA, max_concentration)
     # Gradually add harder constraints to stress-test MIP
     configs = [
-        # Small: lot sizes only — MIP should dominate
-        {"na": 7,  "no": 4,  "mta": 0,        "conc": None, "label": "7x4  (lots only)"},
-        {"na": 10, "no": 5,  "mta": 0,        "conc": None, "label": "10x5 (lots only)"},
-        {"na": 15, "no": 6,  "mta": 0,        "conc": None, "label": "15x6 (lots only)"},
-        {"na": 20, "no": 8,  "mta": 0,        "conc": None, "label": "20x8 (lots only)"},
+    
         # Medium: add MTA — more binary vars for MIP
-        {"na": 20, "no": 8,  "mta": 2_000_000, "conc": None, "label": "20x8 (+MTA)"},
-        {"na": 25, "no": 10, "mta": 2_000_000, "conc": None, "label": "25x10 (+MTA)"},
-        {"na": 30, "no": 12, "mta": 2_000_000, "conc": None, "label": "30x12 (+MTA)"},
+        {"na": 100, "no": 50,  "mta": 2_000_000, "conc": None, "label": "100x50 (+MTA)"},
+        {"na": 200, "no": 100, "mta": 2_000_000, "conc": None, "label": "200x100 (+MTA)"},
+        {"na": 500, "no": 250, "mta": 2_000_000, "conc": None, "label": "500x250(+MTA)"},
         # Large: add concentration limits — NP-hard territory
-        {"na": 30, "no": 12, "mta": 2_000_000, "conc": 8,    "label": "30x12 (+MTA+conc8)"},
-        {"na": 35, "no": 14, "mta": 2_000_000, "conc": 8,    "label": "35x14 (+MTA+conc8)"},
-        {"na": 40, "no": 16, "mta": 2_000_000, "conc": 8,    "label": "40x16 (+MTA+conc8)"},
-        {"na": 50, "no": 18, "mta": 2_000_000, "conc": 10,   "label": "50x18 (+MTA+conc10)"},
+        {"na": 100, "no": 50, "mta": 2_000_000, "conc": 8,    "label": "100x50 (+MTA+conc8)"},
+        {"na": 200, "no": 100, "mta": 2_000_000, "conc": 8,    "label": "200x100 (+MTA+conc8)"},
+        {"na": 500, "no": 250, "mta": 2_000_000, "conc": 8,    "label": "500x250 (+MTA+conc8)"},
+        {"na": 1000, "no": 500, "mta": 2_000_000, "conc": 10,   "label": "1000x500 (+MTA+conc10)"},
     ]
 
     QUBO_CHUNKS = 10
@@ -167,7 +163,7 @@ def main():
         t0 = time.perf_counter()
         cqm_sol = solve_cqm(
             assets, obligations,
-            backend="neal",
+            backend="hybrid",
             lot_size=LOT_SIZE,
             num_reads=CQM_READS,
             num_sweeps=CQM_SWEEPS,
