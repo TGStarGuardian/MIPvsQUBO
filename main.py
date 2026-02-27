@@ -90,7 +90,7 @@ def main():
     # Large: add concentration limits — NP-hard territory
     configs = [
     # Dummy scale
-    {"na": 10, "no": 2, "mta": 2_000_000, "conc": 8,    "label": "150x50 (+MTA+conc8)"},
+    {"na": 50, "no": 25, "mta": 2_000_000, "conc": 8,    "label": "10x2 (+MTA+conc8)"},
     # Gradually larger
     {"na": 150, "no": 50, "mta": 2_000_000, "conc": 8,    "label": "150x50 (+MTA+conc8)"},
     {"na": 250, "no": 75, "mta": 2_000_000, "conc": 8,    "label": "250x75 (+MTA+conc8)"},
@@ -145,7 +145,7 @@ def main():
             time_limit=MIP_TIME_LIMIT,
         )
         mip_ms = (time.perf_counter() - t0) * 1000
-        mip_ok = mip_sol["success"] and mip_sol["allocation"] is not None
+        mip_ok = mip_sol["allocation"] is not None
         mip_optimal = mip_sol.get("optimal", mip_sol["success"])
         mip_cost = mip_sol["total_cost"] if mip_ok else float("inf")
 
