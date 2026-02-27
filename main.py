@@ -87,23 +87,22 @@ def main():
 
     # Problem configs: (assets, obligations, use_MTA, max_concentration)
     # Gradually add harder constraints to stress-test MIP
+    # Large: add concentration limits — NP-hard territory
     configs = [
-        # Large: add concentration limits — NP-hard territory
-        configs = [
-    	# Dummy scale
-    	{"na": 10, "no": 2, "mta": 2_000_000, "conc": 8,    "label": "150x50 (+MTA+conc8)"},
-        # Gradually larger
-        {"na": 150, "no": 50, "mta": 2_000_000, "conc": 8,    "label": "150x50 (+MTA+conc8)"},
-        {"na": 250, "no": 75, "mta": 2_000_000, "conc": 8,    "label": "250x75 (+MTA+conc8)"},
-        {"na": 500, "no": 150, "mta": 2_000_000, "conc": 8,    "label": "500x150 (+MTA+conc8)"},
-        {"na": 1000, "no": 350, "mta": 2_000_000, "conc": 10,   "label": "1000x350 (+MTA+conc10)"},
-        {"na": 2500, "no": 1500, "mta": 2_000_000, "conc": 8,    "label": "2500x1500 (+MTA+conc8)"},
-        {"na": 10000, "no": 3500, "mta": 2_000_000, "conc": 8,    "label": "10000x3500 (+MTA+conc8)"},
-        {"na": 50000, "no": 7500, "mta": 2_000_000, "conc": 8,    "label": "50000x7500 (+MTA+conc8)"},
-        {"na": 100000, "no": 35000, "mta": 2_000_000, "conc": 10,   "label": "100000x35000 (+MTA+conc10)"},
-        {"na": 500000, "no": 25000, "mta": 2_000_000, "conc": 8,    "label": "500000x25000 (+MTA+conc8)"},
-        {"na": 1000000, "no": 50000, "mta": 2_000_000, "conc": 8,    "label": "1000000x50000 (+MTA+conc8)"}
-    	]
+    # Dummy scale
+    {"na": 10, "no": 2, "mta": 2_000_000, "conc": 8,    "label": "150x50 (+MTA+conc8)"},
+    # Gradually larger
+    {"na": 150, "no": 50, "mta": 2_000_000, "conc": 8,    "label": "150x50 (+MTA+conc8)"},
+    {"na": 250, "no": 75, "mta": 2_000_000, "conc": 8,    "label": "250x75 (+MTA+conc8)"},
+    {"na": 500, "no": 150, "mta": 2_000_000, "conc": 8,    "label": "500x150 (+MTA+conc8)"},
+    {"na": 1000, "no": 350, "mta": 2_000_000, "conc": 10,   "label": "1000x350 (+MTA+conc10)"},
+    {"na": 2500, "no": 1500, "mta": 2_000_000, "conc": 8,    "label": "2500x1500 (+MTA+conc8)"},
+    {"na": 10000, "no": 3500, "mta": 2_000_000, "conc": 8,    "label": "10000x3500 (+MTA+conc8)"},
+    {"na": 50000, "no": 7500, "mta": 2_000_000, "conc": 8,    "label": "50000x7500 (+MTA+conc8)"},
+    {"na": 100000, "no": 35000, "mta": 2_000_000, "conc": 10,   "label": "100000x35000 (+MTA+conc10)"},
+    {"na": 500000, "no": 25000, "mta": 2_000_000, "conc": 8,    "label": "500000x25000 (+MTA+conc8)"},
+    {"na": 1000000, "no": 50000, "mta": 2_000_000, "conc": 8,    "label": "1000000x50000 (+MTA+conc8)"}
+    ]
 
     QUBO_CHUNKS = 10
     QUBO_READS = 3
