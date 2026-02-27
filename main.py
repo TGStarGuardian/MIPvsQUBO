@@ -82,26 +82,18 @@ def main():
     print("#  Problem: Collateral optimisation with lot sizes, MTA, concentration limits")
     print("#" * 120)
 
-    LOT_SIZE = 1_000_000
-    MIP_TIME_LIMIT = 300.0
+    LOT_SIZE = float(sys.argv[5])
+    MIP_TIME_LIMIT = float(sys.argv[6])
 
     # Problem configs: (assets, obligations, use_MTA, max_concentration)
     # Gradually add harder constraints to stress-test MIP
     # Large: add concentration limits — NP-hard territory
+    
+    na, no, mta, conc = int(sys.argv[1]), int(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4])
+    
     configs = [
     # Dummy scale
-    {"na": 50, "no": 25, "mta": 2_000_000, "conc": 8,    "label": "10x2 (+MTA+conc8)"},
-    # Gradually larger
-    {"na": 150, "no": 50, "mta": 2_000_000, "conc": 8,    "label": "150x50 (+MTA+conc8)"},
-    {"na": 250, "no": 75, "mta": 2_000_000, "conc": 8,    "label": "250x75 (+MTA+conc8)"},
-    {"na": 500, "no": 150, "mta": 2_000_000, "conc": 8,    "label": "500x150 (+MTA+conc8)"},
-    {"na": 1000, "no": 350, "mta": 2_000_000, "conc": 10,   "label": "1000x350 (+MTA+conc10)"},
-    {"na": 2500, "no": 1500, "mta": 2_000_000, "conc": 8,    "label": "2500x1500 (+MTA+conc8)"},
-    {"na": 10000, "no": 3500, "mta": 2_000_000, "conc": 8,    "label": "10000x3500 (+MTA+conc8)"},
-    {"na": 50000, "no": 7500, "mta": 2_000_000, "conc": 8,    "label": "50000x7500 (+MTA+conc8)"},
-    {"na": 100000, "no": 35000, "mta": 2_000_000, "conc": 10,   "label": "100000x35000 (+MTA+conc10)"},
-    {"na": 500000, "no": 25000, "mta": 2_000_000, "conc": 8,    "label": "500000x25000 (+MTA+conc8)"},
-    {"na": 1000000, "no": 50000, "mta": 2_000_000, "conc": 8,    "label": "1000000x50000 (+MTA+conc8)"}
+    {"na": na, "no": no, "mta": mta, "conc": conc,    "label": str(na) + "x" + str(no) + "(+MTA+conc" + str(conc) + ")"},
     ]
 
     QUBO_CHUNKS = 10
