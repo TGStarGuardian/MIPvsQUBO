@@ -103,7 +103,7 @@ def main():
         {"na": 100000, "no": 35000, "mta": 2_000_000, "conc": 10,   "label": "100000x35000 (+MTA+conc10)"},
         {"na": 500000, "no": 25000, "mta": 2_000_000, "conc": 8,    "label": "500000x25000 (+MTA+conc8)"},
         {"na": 1000000, "no": 50000, "mta": 2_000_000, "conc": 8,    "label": "1000000x50000 (+MTA+conc8)"}
-    ]
+    	]
 
     QUBO_CHUNKS = 10
     QUBO_READS = 3
